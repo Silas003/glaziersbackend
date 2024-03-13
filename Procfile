@@ -1,0 +1,1 @@
+web : gunicorn Glazers.wsgi --log-file
