@@ -53,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS=[
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'https://gag-kumasi.onrender.com'
 ]
 
 ROOT_URLCONF = 'Glazers.urls'
