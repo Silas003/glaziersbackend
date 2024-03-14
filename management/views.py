@@ -15,6 +15,11 @@ class CompanyView(viewsets.ModelViewSet):
     queryset = Company.objects.all()
 
 class UserRegView(viewsets.ModelViewSet):
+    def get_serializer_class(self):
+        if self.action=='password_rest':
+            return LoginSerializers
+        else :
+            return UserRegSerializers
     serializer_class=UserRegSerializers
     queryset=User.objects.all()
     
