@@ -14,7 +14,8 @@ class User(AbstractUser):
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
-    owner = models.ForeignKey('management.User',on_delete=models.CASCADE,related_name='company')
+    # owner = models.ForeignKey('management.User',on_delete=models.CASCADE,related_name='company')
+    owner=models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     
     def __str__(self):
@@ -25,8 +26,8 @@ class CompanyApprentice(models.Model):
     company=models.ForeignKey(Company,on_delete=models.CASCADE,related_name='company')
     apprentice = models.ForeignKey(Apprentice,on_delete=models.CASCADE,related_name='apprentice') 
 
-
-
+    def __str__(self):
+        return f"{self.company.name} {self.apprentice.fullname}"
 
 
 
