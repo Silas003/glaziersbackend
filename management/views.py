@@ -88,7 +88,7 @@ class UserLogin(viewsets.ModelViewSet):
             return Response({
                 'tokens':tokens,
                 'user':user.id,
-                'company':user.company.name
+        #        'company':user.company.name
                     },status=status.HTTP_200_OK)
         else:
             return Response({
@@ -123,7 +123,7 @@ class UserLogin(viewsets.ModelViewSet):
                 return Response({
                     'tokens': tokens,
                     'user': user_data,
-                    'company': user.company.name if hasattr(user, 'company') else None
+                #    'company': user.company.name if hasattr(user, 'company') else None
                 }, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -141,18 +141,18 @@ def login_view(request):
             tokens = get_tokens_for_user(user)
             user_serializer = UserSerializers(user)
             # print(user.company.all())
-            comp_serializer=CompanySerializers(user.company.all())
+            #comp_serializer=CompanySerializers(user.company.all())
             user_data = user_serializer.data
-            companies = user.company.all()
+            #companies = user.company.all()
 
     # Serialize the companies
-            company_serializers = CompanySerializers(companies, many=True)
-            company_data = company_serializers.data
+            #company_serializers = CompanySerializers(companies, many=True)
+            #company_data = company_serializers.data
 
             return Response({
                 # 'tokens': tokens,
                 'user': user_data,
-                'companies': company_data
+                #'companies': company_data
             }, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
