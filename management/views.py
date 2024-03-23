@@ -1,6 +1,10 @@
 from rest_framework import viewsets,status
 from rest_framework.decorators import api_view,action
-from .serializers import UserRegSerializers,LoginSerializers,User,Company,CompanySerializers,CompanyApprentice,CompanyApprenticeSerializer,UserSerializers
+from .serializers import(
+    UserRegSerializers,
+    Products,
+    ProductSerializer,
+    LoginSerializers,User,Company,CompanySerializers,CompanyApprentice,CompanyApprenticeSerializer,UserSerializers)
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
@@ -158,4 +162,8 @@ def login_view(request):
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-   
+
+
+class ProductViewset(viewsets.ModelViewSet):
+    serializer_class=ProductSerializer
+    queryset=Products.objects.all()

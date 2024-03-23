@@ -32,6 +32,9 @@ class CompanyApprentice(models.Model):
 
 
 
+class Products(models.Model):
+    type=models.CharField(max_length=255)
+    product=models.ImageField(upload_to="products")
 
 
 

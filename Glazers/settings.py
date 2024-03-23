@@ -81,25 +81,26 @@ WSGI_APPLICATION = 'Glazers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# if DEBUG:
-#     DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# else:
-DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("POSTGRES_DB", "kumasiglaziers"),
-            "USER": os.getenv("POSTGRES_USER", "admin"),
-            "PASSWORD": os.getenv("POSTGRES_PASSWORD", "localhost"),
-            "HOST": os.getenv("POSTGRES_HOST", "db"),  # set in docker-compose.yml
-            "PORT": int(os.getenv("POSTGRES_PORT", 5432)),  # default postgres port
-            "OPTIONS": {"sslmode": os.getenv("PGSSLMODE", "prefer")},
-        }
+DB=False
+if DB:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+else:
+    DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": os.getenv("POSTGRES_DB", "kumasiglaziers"),
+                "USER": os.getenv("POSTGRES_USER", "admin"),
+                "PASSWORD": os.getenv("POSTGRES_PASSWORD", "localhost"),
+                "HOST": os.getenv("POSTGRES_HOST", "db"),  # set in docker-compose.yml
+                "PORT": int(os.getenv("POSTGRES_PORT", 5432)),  # default postgres port
+                "OPTIONS": {"sslmode": os.getenv("PGSSLMODE", "prefer")},
+            }
+        }
 
 
 

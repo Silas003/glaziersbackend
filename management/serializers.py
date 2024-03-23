@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Company,CompanyApprentice
+from .models import User,Company,CompanyApprentice,Products
 from employees.serializers import ApprenticeSerializer
 
 class UserRegSerializers(serializers.ModelSerializer):
@@ -37,3 +37,8 @@ class CompanySerializers(serializers.ModelSerializer):
         model=Company
         fields=['id','owner','name','location','company',]
         # depth=1
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Products
+        fields='__all__'
