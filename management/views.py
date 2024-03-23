@@ -9,6 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.exceptions import MethodNotAllowed
+from django_filters.rest_framework import DjangoFilterBackend
 
 class CompanyApprenticeView(viewsets.ModelViewSet):
     serializer_class=CompanyApprenticeSerializer
@@ -167,3 +168,5 @@ def login_view(request):
 class ProductViewset(viewsets.ModelViewSet):
     serializer_class=ProductSerializer
     queryset=Products.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['type', ]
